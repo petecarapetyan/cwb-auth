@@ -4,9 +4,6 @@ import { sharedStyles } from "./shared-styles";
 
 import './view-account'
 import './auth-status'
-import "./view-interest-C";
-import "./view-interest-RD";
-import "./view-interest-U";
 import './view-signin'
 
 
@@ -25,9 +22,6 @@ export class AppShellElement extends LitElement {
     <auth-status></auth-status>
     <view-account></view-account>
     <view-signin></view-signin>
-    <view-interest-c></view-interest-c>
-    <view-interest-rd></view-interest-rd>
-    <view-interest-u></view-interest-u>
     <hr>
     `
   }
