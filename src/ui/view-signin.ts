@@ -17,7 +17,7 @@ export class ViewSigninElement extends LitElement {
 
   render() {
     return html`
-      <h1>Sign In</h1>
+      <h1>Please Sign In</h1>
       <p>Signing in will redirect you to the firebase authentication page for this app.</p>
       <button class="auth" raised @click=${this.signIn} id="google">
         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">

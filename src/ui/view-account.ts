@@ -41,9 +41,9 @@ export class ViewAccountElement extends Connected {
           <h1>Your Account</h1>
           <h2>${this.user.displayName}</h2>
           <p>${this.user.email}</p>
-          <mwc-button raised @click=${this.signOut}>
+          <button raised @click=${this.signOut}>
             Sign out
-          </mwc-button>
+          </button>
           <h3>Raw Auth Data:</h3>
           <pre>${JSON.stringify(this.user, null, '  ')}</pre>
         `
@@ -57,9 +57,8 @@ export class ViewAccountElement extends Connected {
     return [
       sharedStyles,
       css`
-        mwc-button {
-          --mdc-theme-on-primary: #ffffff;
-          --mdc-theme-primary: #f04141;
+        :host {
+          padding: 2em;
         }
       `
     ]

@@ -1,5 +1,6 @@
-import {LitElement, html, css} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import { html, css} from 'lit';
+import { Connected, State, AuthSelectors } from "./connected";
+import {customElement, property} from 'lit/decorators.js';
 import { sharedStyles } from "./shared-styles";
 
 import './view-account'
@@ -14,21 +15,30 @@ declare global {
 }
 
 @customElement('app-shell')
-export class AppShellElement extends LitElement {
+export class AppShellElement extends Connected {
+  @property({ type: Boolean }) authenticated: boolean;
 
+  mapState(state: State) {
+    return {
+      authenticated: AuthSelectors.authenticated(state)
+    };
+  }
 
   render() {
-    return html`
-    <auth-status></auth-status>
-    <view-account></view-account>
-    <view-signin></view-signin>
-    <hr>
-    `
+    return  this.authenticated
+    ? html`
+      <auth-status></auth-status>
+      <hr/>
+      <view-account></view-account>` :
+    html`<view-signin></view-signin>`
   }
 
   static get styles() {
     return [sharedStyles, 
     css`
+      :host {
+        padding: 2em;
+      }
       app-view {
         box-sizing: border-box;
         padding: var(--min-padding);
