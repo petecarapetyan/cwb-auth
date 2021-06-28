@@ -39,10 +39,6 @@ export class AppShellElement extends Connected {
       :host {
         padding: 2em;
       }
-      app-view {
-        box-sizing: border-box;
-        padding: var(--min-padding);
-      }
 
       auth-status {
         height: 56px;
