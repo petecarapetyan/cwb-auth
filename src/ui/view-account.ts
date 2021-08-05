@@ -23,11 +23,15 @@ export class ViewAccountElement extends Connected {
   @property({ type: Object })
   user: User
 
+  @property({ type: Object })
+  roles: any
+
   mapState(state: State) {
     return {
       statusKnown: AuthSelectors.statusKnown(state),
       authenticated: AuthSelectors.authenticated(state),
       user: AuthSelectors.user(state),
+      roles: AuthSelectors.roles(state),
     }
   }
 
@@ -44,6 +48,8 @@ export class ViewAccountElement extends Connected {
           <button raised @click=${this.signOut}>
             Sign out
           </button>
+          <h3>Roles:</h3>
+          <pre>${JSON.stringify(this.roles, null, '  ')}</pre>
           <h3>Raw Auth Data:</h3>
           <pre>${JSON.stringify(this.user, null, '  ')}</pre>
         `

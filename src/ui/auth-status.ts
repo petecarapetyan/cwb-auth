@@ -20,11 +20,15 @@ export class AuthStatusElement extends Connected {
   @property({ type: Object })
   user: User
 
+  @property({ type: Object })
+  roles: any
+
   mapState(state: State) {
     return {
       statusKnown: AuthSelectors.statusKnown(state),
       authenticated: AuthSelectors.authenticated(state),
       user: AuthSelectors.user(state),
+      roles: AuthSelectors.roles(state),
     }
   }
 

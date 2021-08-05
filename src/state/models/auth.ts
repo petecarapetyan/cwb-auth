@@ -9,6 +9,10 @@ export interface Roles {
   user: boolean;
 }
 
+export interface UserRoles {
+  roles: string;
+}
+
 export interface AuthState {
   user: User | null;
   statusKnown: boolean;
@@ -39,6 +43,7 @@ export default createModel({
   state: <AuthState>{
     user: null,
     statusKnown: false,
+    roles: null
   },
 
   reducers: {
@@ -109,8 +114,9 @@ export default createModel({
             .collection("users")
             .doc(uid)
             .onSnapshot((doc) => {
-              const myRoles = <Roles> doc.data()
-              store.getDispatch().auth.roles(myRoles)
+              const userRoles = <UserRoles> doc.data()
+              const roles = <Roles> JSON.parse(userRoles.roles)
+              store.getDispatch().auth.roles(roles)
             });
         }
       },
@@ -138,6 +144,11 @@ export namespace AuthSelectors {
   export const statusKnown = createSelector(
     [getState],
     (state) => state.statusKnown
+  );
+
+  export const roles = createSelector(
+    [getState],
+    (state) => state.roles
   );
 
   export const anonymous = createSelector([user], (user) => user === null);
